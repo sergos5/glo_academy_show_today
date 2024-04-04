@@ -11,7 +11,7 @@ let getTimeOfDay = (hours) => {
     if (hours >= 10 && hours < 16) return 'Добрый день';
     if (hours >= 16 && hours < 22) return 'Добрый вечер';
     if (hours >= 22 || hours < 6) return 'Доброй ночи';
-}
+};
 
 const weekday = [
     'воскресенье',
@@ -22,6 +22,12 @@ const weekday = [
     'пятница',
     'суббота'
 ];
+
+let currentTime = () => {
+    let time = new Date();
+    timeContent.textContent = `Текущее время: ${time.toTimeString().substring(0, 8)}`;
+    setTimeout(currentTime, 1000);
+}
 
 let getDaysBeforeNewYear = () => {
     const arrDey = ['дней', 'день', 'дня'];
@@ -35,9 +41,7 @@ let getDaysBeforeNewYear = () => {
     return daysBeforeNewYear + " " + showDey(daysBeforeNewYear);
 }
 
-getDaysBeforeNewYear();
-
 goodContent.textContent = getTimeOfDay(date.getHours());
 todeyContent.textContent = `Сегодня: ${weekday[date.getDay()]}.`;
-timeContent.textContent = `Текущее время: ${date.toTimeString().substring(0,8)}`;
 newYearContent.textContent = `До Нового Года осталось: ${getDaysBeforeNewYear()}`;
+currentTime();
